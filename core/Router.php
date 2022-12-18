@@ -47,6 +47,13 @@ class Router
      */
     public function resolve(): Response
     {
-        // TODO: Implement
+        $method = $this->request->getMethod();
+        $path = $this->request->getPath();
+        if (!isset(self::$routes[$method][$path]))
+            return $this->response->setStatusCode(404);
+
+        [$nameController, $nameAction] = self::$routes[$method][$path];
+        $controllerObj = new $nameController;
+        return $controllerObj->$nameAction();
     }
 }

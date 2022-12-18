@@ -6,6 +6,7 @@ class Config
 {
     public static function get(string $key): mixed
     {
-        // TODO: Implement
+        $config = include __DIR__ . '/../app/config.php';
+        return $config[$key] ?? null;
     }
 }
