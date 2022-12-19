@@ -67,7 +67,7 @@ class Reservation extends Model
         ];
 
         if(DB::get()->select(static::getTable(), '*', $whereClause))
-            return false;
-        return true;
+            return true;
+        return false;
     }
 }
