@@ -48,23 +48,9 @@ class Reservation extends Model
      */
     public static function isReserved(int $deviceId, string $start, string $end): bool
     {
-        $whereClause = [
-            'AND' => ['device_id' => $deviceId],
-            'OR' => [
-                'AND #first' => [
-                    'start[<=]' => $start,
-                    'end[>=]' => $start,
-                ],
-                'AND #second' => [
-                    'start[<=]' => $end,
-                    'end[>=]' => $end,
-                ],
-                'AND #third' => [
-                    'start[>=]' => $start,
-                    'end[<=]' => $end,
-                ]
-            ]
-        ];
+        $whereClause['device_id'] = $deviceId;
+        $whereClause['start[<]'] = $end;
+        $whereClause['end[>]'] = $start;
 
         if(DB::get()->select(static::getTable(), '*', $whereClause))
             return true;
