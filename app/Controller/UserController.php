@@ -55,12 +55,8 @@ class UserController
                     $data[$item] = $params[$item];
                 }
             }
-            if (!empty($data)){
-                echo Response::make()->setBody(User::create($data)->toArray())->getBody();
-                return Response::make()->setStatusCode(201);
-            }
+            return Response::make()->setBody(User::create($data)->toArray())->setStatusCode(201);
 
-            return Response::make()->setStatusCode(400);
         } catch (Exception $exception) {
             return Response::make()->setStatusCode(400);
         }

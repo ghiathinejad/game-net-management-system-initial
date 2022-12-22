@@ -40,12 +40,8 @@ class DeviceController
                     $data[$item] = $params[$item];
                 }
             }
-            if (!empty($data)){
-                Response::make()->setBody(Device::create($data)->toArray())->getBody();
-                return Response::make()->setStatusCode(201);
-            }
 
-            return Response::make()->setStatusCode(400);
+            return Response::make()->setBody(Device::create($data)->toArray())->setStatusCode(201);
         } catch (Exception $exception) {
             return Response::make()->setStatusCode(400);
         }
