@@ -76,6 +76,8 @@ class ReservationController
             $date = date('Y-m-d H:i:s');
             WalletTransaction::create(['user_id' => $userId , 'type' => 'debit' , 'created_at' => $date , 'amount' => $deviceCostAll]);
 
+            User::update($userId , ['wallet_amount' => $userWallet - $deviceCostAll]);
+
             return Response::make()->setBody($reservationEntity->toArray());
         }catch (Exception $e){
 
