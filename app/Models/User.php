@@ -18,6 +18,6 @@ class User extends Model
     {
         if(isset($data['wallet_amount']))
             unset($data['wallet_amount']);
-        return parent::create($data);
+        return Parent::create($data);
     }
 }

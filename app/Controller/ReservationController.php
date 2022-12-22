@@ -6,8 +6,6 @@ use App\Models\Device;
 use App\Models\Reservation;
 use App\Models\User;
 use App\Models\WalletTransaction;
-use Core\Exceptions\InvalidInputException;
-use Core\Exceptions\NotFoundException;
 use Core\Request;
 use Core\Response;
 use Exception;
@@ -72,6 +70,7 @@ class ReservationController
         ];
 
         try {
+
             $reservationEntity = Reservation::create($reservationData);
 
             $date = date('Y-m-d H:i:s');

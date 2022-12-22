@@ -47,15 +47,9 @@ class UserController
     public function create(): Response
     {
         try {
-            $createdField = ['firstname', 'lastname', 'wallet_amount'];
             $params = Request::getParams();
-            $data = [];
-            foreach ($createdField as $item) {
-                if (key_exists($item, $params)) {
-                    $data[$item] = $params[$item];
-                }
-            }
-            return Response::make()->setBody(User::create($data)->toArray())->setStatusCode(201);
+
+            return Response::make()->setBody(User::create($params)->toArray())->setStatusCode(201);
 
         } catch (Exception $exception) {
             return Response::make()->setStatusCode(400);
