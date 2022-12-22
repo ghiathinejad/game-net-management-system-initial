@@ -16,7 +16,8 @@ class User extends Model
      */
     public static function create(array $data): ?Model
     {
-        if(isset($data['wallet_amount']) && $data['wallet_amount'] > 0) unset($data['wallet_amount']);
-        return parent::create($data);
+        if(isset($data['wallet_amount']))
+            unset($data['wallet_amount']);
+        return Parent::create($data);
     }
 }
